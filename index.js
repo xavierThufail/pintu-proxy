@@ -30,7 +30,7 @@ app.get('/price-changes', (req, res) => {
 });
 
 app.get('/uiKlines', (req, res) => {
-  const { symbol, interval, limit } = req.params;
+  const { symbol, interval, limit } = req.query;
   const url = `https://api.binance.com/api/v3/uiKlines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
 
   axios(url)

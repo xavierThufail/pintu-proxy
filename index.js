@@ -29,6 +29,21 @@ app.get('/price-changes', (req, res) => {
     .catch((err) => res.status(500).json({ type: 'error', message: err.message }))
 });
 
+app.get('/uiKlines', (req, res) => {
+  const { symbol, interval, limit } = req.params;
+  const url = `https://api.binance.com/api/v3/uiKlines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
+
+  axios(url)
+    .then((response) => {
+      const data = res.json(response.data);
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ type: 'error', message: err.message })
+    })
+});
+
 const PORT = process.env.PORT || 2000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 

@@ -29,6 +29,10 @@ app.get('/price-changes', (req, res) => {
     .catch((err) => res.status(500).json({ type: 'error', message: err.message }))
 });
 
+app.get('/time', (req, res) => {
+  res.json(Date.now());
+})
+
 app.get('/uiKlines', (req, res) => {
   const { symbol, interval, limit } = req.query;
   const url = `https://api.binance.com/api/v3/uiKlines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
